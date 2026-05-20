@@ -118,6 +118,7 @@ public class MapGenerator : MonoBehaviour
             {
                 MapThreadInfo<MapData> threadInfo = mapDataThreadInfoQueue.Dequeue();
                 threadInfo.callback(threadInfo.parameter);
+                textureData.UpdateMeshHeights(terrainMaterial, terrainData.minHeight, terrainData.maxHeight);
             }
         }
         if (meshDataThreadInfoQueue.Count > 0)
@@ -154,8 +155,6 @@ public class MapGenerator : MonoBehaviour
                 
             }
         }
-
-        textureData.UpdateMeshHeights(terrainMaterial, terrainData.minHeight, terrainData.maxHeight);
 
         return new MapData(noiseMap);
     }
